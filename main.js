@@ -34,9 +34,7 @@ getEle("themSV").addEventListener("click", function(){
      " - " + sinhVien.email  + " - " + sinhVien.ngaySinh + " - " + sinhVien.khoaHoc
      + " - " + sinhVien.dtb;
 
-
-     getEle("tbodySinhVien").innerHTML = 
-     "<tr>" + 
-        "<td>" + "</td"
-     + "</tr>"
+     danhSachSV.push(sinhVien);
+     console.log("danh sách sv: " + danhSachSV);
 });
+//  gặp vấn đề muốn in ra màn hình
