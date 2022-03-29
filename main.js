@@ -2,8 +2,7 @@ function getEle(id){
     return document.getElementById(id);
 };
 
-var danhSachSV = new DanhSachSinhVien();
-var validate = new Validation();
+var danhSachSinhVien = new DanhSachSinhVien();
 
 getEle("themSV").addEventListener("click", function(){
     // lấy dữ liệu người dùng nhập
@@ -16,12 +15,14 @@ getEle("themSV").addEventListener("click", function(){
     var _diemToan = getEle("txtDiemToan").value *1;
     var _diemLy = getEle("txtDiemLy").value *1;
     var _diemHoa = getEle("txtDiemHoa").value *1;
+    
+    // thêm sinh viên
+    //khởi tạo đối tượng sinhVien
+    var sinhVien = new SinhVien(_maSV, _tenSV, _email, _matKhau,
+        _ngaySinh, _khoaHoc, _diemToan, _diemLy, _diemHoa);
 
-    // Kiểm tra validation
-    if(validate.kiemTraRong(_maSV)){
-        getEle("txtMaSV").style.borderColor = "red";
-    }else{
-        getEle("txtMaSV").style.borderColor = "green";
-    };
+    danhSachSinhVien.themSV(sinhVien);
+    console.log(danhSachSinhVien);
 
+    //hiển thị lên table: ý tưởng tạo thẻ thêm vào bảng
 });

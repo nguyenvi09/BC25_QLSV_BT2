@@ -1,7 +1,7 @@
 function DanhSachSinhVien(){
     this.danhSachSV = [];
-    this.themSV = function(svThem){
-        this.danhSachSV.push(svThem);
+    this.themSV = function(themSV){
+        this.danhSachSV.push(themSV);
     };
     this.xoaSV = function(){
 
