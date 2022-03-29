@@ -18,6 +18,10 @@ getEle("themSV").addEventListener("click", function(){
     var _diemHoa = getEle("txtDiemHoa").value *1;
 
     // Kiểm tra validation
-    validate.kiemTraRong(_maSV);
+    if(validate.kiemTraRong(_maSV)){
+        getEle("txtMaSV").style.borderColor = "red";
+    }else{
+        getEle("txtMaSV").style.borderColor = "green";
+    };
 
 });
