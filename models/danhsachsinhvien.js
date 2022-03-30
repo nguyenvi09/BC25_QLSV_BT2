@@ -3,9 +3,11 @@ function DanhSachSinhVien(){
     this.themSV = function(themSV){
         this.danhSachSV.push(themSV);
     };
-    this.xoaSV = function(){
 
+    this.xoaSV = function(){
+        this.danhSachSV.pop();
     };
+
     this.suaSV = function(svCapNhat){
 
     };

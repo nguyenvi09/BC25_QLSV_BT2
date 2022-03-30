@@ -24,6 +24,19 @@ getEle("themSV").addEventListener("click", function(){
     danhSachSinhVien.themSV(sinhVien);
     console.log(danhSachSinhVien);
 
+    capNhatSinhVien(danhSachSinhVien);
+
+});
+//hàm tạo thẻ td
+function taoTheTD (value)
+{
+    var td = document.createElement("td");
+    td.innerHTML = value;
+    return td;
+}
+
+// hàm cập nhật lại bảng thông tin sinh viên
+function capNhatSinhVien(danhSachSinhVien){
     //lấy thẻ table 
     var tableSV = getEle("tbodySinhVien");
     tableSV.innerHTML = "";
@@ -52,12 +65,11 @@ getEle("themSV").addEventListener("click", function(){
         //nối trSV vào tableSV
         tableSV.appendChild(trSV);
     };
+};
 
+
+getEle("xoaSV").addEventListener("click", function(){
+    danhSachSinhVien.xoaSV();
+    console.log(danhSachSinhVien.danhSachSV);
+    capNhatSinhVien(danhSachSinhVien);
 });
-//hàm tạo thẻ td
-function taoTheTD (value)
-{
-    var td = document.createElement("td");
-    td.innerHTML = value;
-    return td;
-}
