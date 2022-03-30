@@ -16,6 +16,22 @@ getEle("themSV").addEventListener("click", function(){
     var _diemLy = getEle("txtDiemLy").value *1;
     var _diemHoa = getEle("txtDiemHoa").value *1;
     
+    // kiểm tra dữ liệu nhập
+    kiemTraDL("txtMaSV");
+    kiemTraDL("txtTenSV");
+    kiemTraDL("txtPass");
+    kiemTraEmail("txtEmail");
+    kiemTraDLSo("txtDiemToan");
+    kiemTraDLSo("txtDiemLy");
+    kiemTraDLSo("txtDiemHoa");
+
+    if(kiemTraDL("txtMaSV") == false || kiemTraDL("txtTenSV") == false
+    || kiemTraDL("txtPass") == false || kiemTraEmail("txtEmail") == false
+    || kiemTraDLSo("txtDiemToan") == false || kiemTraDLSo("txtDiemLy") == false
+    || kiemTraDLSo("txtDiemHoa") == false){
+        return;
+    }
+
     // thêm sinh viên
     //khởi tạo đối tượng sinhVien
     var sinhVien = new SinhVien(_maSV, _tenSV, _email, _matKhau,
@@ -27,6 +43,14 @@ getEle("themSV").addEventListener("click", function(){
     capNhatSinhVien(danhSachSinhVien);
 
 });
+
+
+getEle("xoaSV").addEventListener("click", function(){
+    danhSachSinhVien.xoaSV();
+    console.log(danhSachSinhVien.danhSachSV);
+    capNhatSinhVien(danhSachSinhVien);
+});
+
 //hàm tạo thẻ td
 function taoTheTD (value)
 {
@@ -67,9 +91,51 @@ function capNhatSinhVien(danhSachSinhVien){
     };
 };
 
+// hàm kiểm tra dữ liệu bắt buộc nhập
+function kiemTraDL(id){
+    var empt = getEle(id).value;
+    if(empt == ""){
+        // dữ liệu không hợp lệ
+        // thông báo nội dung lỗi
+        getEle(id).style.borderColor = "red";
+        return false;
+    }else{
+        // dữ liệu hợp lệ
+        getEle(id).style.borderColor = "green";
+        return true;
+    };
+};
 
-getEle("xoaSV").addEventListener("click", function(){
-    danhSachSinhVien.xoaSV();
-    console.log(danhSachSinhVien.danhSachSV);
-    capNhatSinhVien(danhSachSinhVien);
-});
+//hàm kiểm tra email hợp lệ
+function kiemTraEmail(id){
+    var inputVal = getEle(id).value;
+
+    // sử dụng chuỗi RegExp
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if(inputVal.match(mailformat)){
+        //Dữ liệu hợp lệ
+        getEle(id).style.borderColor = "green";
+        return true;
+    }else{
+        //dữ liệu không hợp lệ
+        getEle(id).style.borderColor = "red";
+        return false;
+    };
+};
+
+// hàm kiểm tra dữ liệu là số
+function kiemTraDLSo(id){
+    var inputVal = getEle(id).value;
+
+    // sử dụng chuỗi Regular expression
+    var numbers = /^[0-9]+$/;
+    if(inputVal.match(numbers)){
+        // dữ liệu hợp lệ
+        getEle(id).style.borderColor = "green";
+        return true;
+    }else{
+        // dữ liệu không hợp lệ
+        getEle(id).style.borderColor = "red";
+        return false;
+    };
+};
