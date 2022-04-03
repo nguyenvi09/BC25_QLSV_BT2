@@ -106,10 +106,28 @@ function taoBang(danhSachSV){
                 <td>${sv.ngaySinh}</td>
                 <td>${sv.khoaHoc}</td>
                 <td>${sv.dtb}</td>
+                <td>
+                    <button class="btn btn-info" onclick="suaSV('${sv.maSV}')">Sửa</button>
+                    <button class="btn btn-danger" onclick="xoaSV('${sv.maSV}')">Xóa</button>
+                </td>
             </tr>
         `;
     };
     getEle("tbodySinhVien").innerHTML = content;
+};
+
+/**
+ * Xóa SV
+ */
+function xoaSV(maSV){
+    //gọi hàm tìm viTriSinhVien
+    // var index = danhSachSinhVien.timViTriSV(maSV);
+    //xóa sv
+    danhSachSinhVien.xoaSV(maSV);
+    //render tbody
+    taoBang(danhSachSinhVien.danhSachSV);
+    //lưu LocalStorage
+    setLocalStorage();
 };
 
 function setLocalStorage(){
@@ -135,10 +153,38 @@ function getLocalStorage(){
     };
 };
 
+/**
+ * Sửa sv
+ * tìm vị trí -> lấy được nguyên thông tin sv
+ * dom ra giao diện
+ * 
+ */
 
+function suaSV(maSV){
+    var sinhVien = danhSachSinhVien.layThongTinSV(maSV);
+    console.log(sinhVien);
+    //dom tới các thẻ input show thông tin ra ngoài
+    getEle("txtMaSV").value = sinhVien.maSV;
+    //khóa thẻ input maSV: không cho thay đổi vì mã là duy nhất
+    getEle("txtMaSV").disabled = true;
+    getEle("txtTenSV").value = sinhVien.tenSV;
+    getEle("txtEmail").value = sinhVien.email;
+    getEle("txtPass").value = sinhVien.matKhau;
+    getEle("txtNgaySinh").value = sinhVien.ngaySinh;
+    getEle("khSV").value = sinhVien.khoaHoc;
+    getEle("txtDiemToan").value = sinhVien.diemToan;
+    getEle("txtDiemLy").value = sinhVien.diemLy;
+    getEle("txtDiemHoa").value = sinhVien.diemHoa;
+};
 
+/**
+ * 
+ * cập nhật sv
+ */
 
-
+getEle("btnCapNhat").addEventListener("click", function(){
+   var sinhVien = layThongTinSV();
+});
 
 
 
