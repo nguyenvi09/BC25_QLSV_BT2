@@ -178,12 +178,14 @@ function suaSV(maSV){
 };
 
 /**
- * 
  * cập nhật sv
  */
 
 getEle("btnCapNhat").addEventListener("click", function(){
    var sinhVien = layThongTinSV();
+   danhSachSinhVien.capNhatSinhVien(sinhVien);
+   taoBang(danhSachSinhVien.danhSachSV);
+    setLocalStorage();
 });
 
 

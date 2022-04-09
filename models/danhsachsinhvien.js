@@ -35,6 +35,12 @@ function DanhSachSinhVien(){
         return null;
     };
 
-    this.timKiemSV = function(){
+    this.capNhatSinhVien = function(sinhVien){
+        //tim vi tri
+        var index = this.timViTriSV(sinhVien.maSV);
+        if(index !== -1){
+            //cap nhat SV
+            this.danhSachSV[index] = sinhVien;
+        };
     };
 };
